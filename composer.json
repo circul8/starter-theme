@@ -1,9 +1,13 @@
 {
   "name": "circul8/wordpress-starter-theme",
   "description": "Starter theme to build a Timber theme",
-  "type":"wordpress-theme",
-  "minimum-stability" : "stable",
+  "type": "wordpress-theme",
   "authors": [
+	  {
+          "name": "Jan Blasko",
+          "email": "janblasko@circul8.com.au",
+          "homepage": "http://144.wtf"
+      },
       {
           "name": "jarednova",
           "email": "jared@upstatement.com"
@@ -13,10 +17,6 @@
     {
       "type": "composer",
       "url": "https://wpackagist.org"
-    },
-    {
-      "type": "git",
-      "url": "https://github.com/lucien144/Instagram-PHP-API.git"
     }
   ],
   "extra": {
