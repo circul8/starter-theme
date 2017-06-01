@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="{{site.charset}}" />
+    <meta name="description" content="{{site.description}}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>
+        {% if wp_title %}
+            {{ wp_title }} - {{ site.name }}
+        {% else %}
+            {{ site.name }}
+        {% endif %}
+    </title>
+	<link rel="stylesheet" href="{{site.theme.link}}/assets/dist/default.css">
+	{{function('wp_head')}}
+</head>
+<body class="{{body_class}}">
+
+	<header>
+		<h1>
+			<a href="{{site.url}}" title="{{site.name}}">{{site.name}}</a>
+		</h1>
+
+		<nav>
+			{% include "partials/menu.twig" with {'menu': navigation.main.get_items, 'level': 'root'} %}
+		</nav>
+
+	</header>

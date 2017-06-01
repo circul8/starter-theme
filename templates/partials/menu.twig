@@ -1,0 +1,14 @@
+{% if menu %}
+	<ul>
+	{% for item in menu %}
+		<li class="{{item.classes | join(' ')}}">
+			{% if level == 'root' %}
+				<a href="{{item.get_link}}" class="main">{{item.title}}</a>
+			{% else %}
+				<a href="{{item.get_link}}" class="submenu">{{item.title}}</a>
+			{% endif %}
+			{% include "partials/menu.twig" with {'menu': item.get_children, 'level': 'children'} %}
+		</li>
+	{% endfor %}
+	</ul>
+{% endif %}
