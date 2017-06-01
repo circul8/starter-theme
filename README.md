@@ -1,35 +1,38 @@
+# Wordpress Starter Theme
+[![Packagist](https://img.shields.io/packagist/v/circul8/wordpress-starter-theme.svg?style=flat-square)](https://packagist.org/packages/circul8/wordpress-starter-theme)
 
-# The Timber Starter Theme
+## Installation
 
-The "_s" for Timber: a dead-simple theme that you can build from. The primary purpose of this theme is to provide a file structure rather than a framework for markup or styles. Configure your Sass, scripts, and task runners however you would like!
+1. `git clone git@bitbucket.org:circul8_communicate/wcc-website.git .`
+1. `composer install`
+1. Go to `/web/app/themes/wcc-theme/` and `composer install` again.
 
-[![Build Status](https://travis-ci.org/timber/starter-theme.svg)](https://travis-ci.org/timber/starter-theme)
+## Technologies
 
-## Installing the Theme
+- [Composer](https://getcomposer.org)
+- [Timber](https://github.com/timber/timber) + [Twig](https://twig.sensiolabs.org/doc/2.x/)
 
-Install this theme as you would any other, and be sure the Timber plugin is activated. But hey, let's break it down into some bullets:
+## Templating system
 
-1. Make sure you have installed the plugin for the [Timber Library](https://wordpress.org/plugins/timber-library/) (and Advanced Custom Fields - they [play quite nicely](http://timber.github.io/timber/#acf-cookbook) together). 
-2. Download the zip for this theme (or clone it) and move it to `wp-content/themes` in your WordPress installation. 
-3. Rename the folder to something that makes sense for your website (generally no spaces and all lowercase). You could keep the name `timber-starter-theme` but the point of a starter theme is to make it your own!
-4. Activate the theme in Appearance >  Themes.
-5. Do your thing! And read [the docs](https://github.com/jarednova/timber/wiki).
+Templating is done by [Timber plugin](https://github.com/timber/timber) which uses [Twig](https://twig.sensiolabs.org/doc/2.x/) as a templating system.
 
-## What's here?
+#### Custom filters
 
-`static/` is where you can keep your static front-end scripts, styles, or images. In other words, your Sass files, JS files, fonts, and SVGs would live here.
+| Filter | Description |
+|--------|-------------|
+| `dump` | Dumps the variable to the Tracy's debug panel. |
+| `cfs($post_id = NULL, $options = [])` | Returns `CFS()->get($field_name, $post_id, $options)` as descibred [here](http://customfieldsuite.com/api/get.html) where `$field_name` is filtered value. |
+| `post` | Returns `new Timber\Post($id)` where `$id` is filtered value. |
+| `image` | Returns `new Timber\Image($id)` where `$id` is filtered value. |
+| `target` | Returns `_blank` or `_self`, expects *Hyperlink Array* from *CFS*. |
+| `webalize` | Webalize string: "Hello, my friend!" -> "hello-my-friend" |
 
-`templates/` contains all of your Twig templates. These pretty much correspond 1 to 1 with the PHP files that respond to the WordPress template hierarchy. At the end of each PHP template, you'll notice a `Timber::render()` function whose first parameter is the Twig file where that data (or `$context`) will be used. Just an FYI.
+## Plugins
 
-`bin/` and `tests/` ... basically don't worry about (or remove) these unless you know what they are and want to.
-
-## Other Resources
-
-The [main Timber Wiki](https://github.com/jarednova/timber/wiki) is super great, so reference those often. Also, check out these articles and projects for more info:
-
-* [This branch](https://github.com/laras126/timber-starter-theme/tree/tackle-box) of the starter theme has some more example code with ACF and a slightly different set up.
-* [Twig for Timber Cheatsheet](http://notlaura.com/the-twig-for-timber-cheatsheet/)
-* [Timber and Twig Reignited My Love for WordPress](https://css-tricks.com/timber-and-twig-reignited-my-love-for-wordpress/) on CSS-Tricks
-* [A real live Timber theme](https://github.com/laras126/yuling-theme).
-* [Timber Video Tutorials](http://timber.github.io/timber/#video-tutorials) and [an incomplete set of screencasts](https://www.youtube.com/playlist?list=PLuIlodXmVQ6pkqWyR6mtQ5gQZ6BrnuFx-) for building a Timber theme from scratch.
-
+| Plugin | Description |
+|-|-|
+| `timber-library` | The core plugin to create custom theme. |
+| `custom-field-suite` | To manage custom fields. |
+| `wp-tracy` | Debugging, adds debug panel. |
+| `disable-comments` | To disable comments. |
+| `tinymce-advanced` | Advanced WYSIWYG. |
