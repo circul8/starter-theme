@@ -3,15 +3,15 @@
   "description": "Starter theme to build a Timber theme",
   "type": "wordpress-theme",
   "authors": [
-	  {
-          "name": "Jan Blasko",
-          "email": "janblasko@circul8.com.au",
-          "homepage": "http://144.wtf"
-      },
-      {
-          "name": "jarednova",
-          "email": "jared@upstatement.com"
-      }
+   {
+      "name": "Jan Blasko",
+      "email": "janblasko@circul8.com.au",
+      "homepage": "http://144.wtf"
+    },
+    {
+      "name": "jarednova",
+      "email": "jared@upstatement.com"
+    }
   ],
   "repositories": [
     {
@@ -20,7 +20,10 @@
     }
   ],
   "extra": {
-  	"installer-paths": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    },
+    "installer-paths": {
       "../../mu-plugins/{$name}/": [
         "wpackagist-plugin/timber-library",
         "wpackagist-plugin/wp-tracy",
@@ -32,8 +35,8 @@
         "wpackagist-plugin/*",
         "type:wordpress-plugin"
       ]
-  	}
-	},
+    }
+  },
   "require": {
     "wpackagist-plugin/wp-tracy": "^1.0",
     "wpackagist-plugin/timber-library": "~1.2.0",
