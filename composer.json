@@ -36,7 +36,7 @@
 	},
   "require": {
 	  "wpackagist-plugin/wp-tracy": "^1.0",
-    "wpackagist-plugin/timber-library": "^1.3",
+    "wpackagist-plugin/timber-library": "~1.2.0",
     "wpackagist-plugin/custom-field-suite": "^2.5",
     "wpackagist-plugin/disable-comments": "^2.6",
     "wpackagist-plugin/tinymce-advanced": "^4.5"
