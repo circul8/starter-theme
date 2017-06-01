@@ -13,10 +13,21 @@
     {
       "type": "composer",
       "url": "https://wpackagist.org"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/lucien144/Instagram-PHP-API.git"
     }
   ],
   "extra": {
   	"installer-paths": {
+      "../../mu-plugins/{$name}/": [
+        "wpackagist-plugin/timber-library",
+        "wpackagist-plugin/wp-tracy",
+        "wpackagist-plugin/custom-field-suite",
+        "wpackagist-plugin/disable-comments",
+        "wpackagist-plugin/tinymce-advanced"
+      ],
       "../../plugins/{$name}/": [
         "wpackagist-plugin/*",
         "type:wordpress-plugin"
@@ -24,6 +35,10 @@
   	}
 	},
   "require": {
-	  "wpackagist-plugin/timber-library": "~1.2.0"
+	  "wpackagist-plugin/wp-tracy": "^1.0",
+    "wpackagist-plugin/timber-library": "^1.3",
+    "wpackagist-plugin/custom-field-suite": "^2.5",
+    "wpackagist-plugin/disable-comments": "^2.6",
+    "wpackagist-plugin/tinymce-advanced": "^4.5"
   }
 }
