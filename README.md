@@ -1,20 +1,25 @@
 # Wordpress Starter Theme
 [![Packagist](https://img.shields.io/packagist/v/circul8/wordpress-starter-theme.svg?style=flat-square)](https://packagist.org/packages/circul8/wordpress-starter-theme)
 
+Starter theme based on [Timber's Starter Theme](https://github.com/timber/starter-theme). It is already part of [Circul8 Wordpress Stack](https://github.com/circul8/wordpress), can be also used with [Root's Bedrock](https://roots.io/bedrock/) or normal Wordpress installation.
+
 ## Installation
 
-1. `git clone git@bitbucket.org:circul8_communicate/wcc-website.git .`
-1. `composer install`
-1. Go to `/web/app/themes/wcc-theme/` and `composer install` again.
+1. Using [Circul8 Wordpress Stack](https://github.com/circul8/wordpress)
+	1. `composer create-project circul8/wordpress new-project`
+1. Using Bedrock or normal Wordpress installation
+	1. Navigate to `/web/app/themes/` or `/wp-content/themes/`
+	1. Run `git clone git@github.com:circul8/wordpress-starter-theme.git`
+	1. Run `composer install`
 
-## Technologies
+## Dependencies
 
 - [Composer](https://getcomposer.org)
 - [Timber](https://github.com/timber/timber) + [Twig](https://twig.sensiolabs.org/doc/2.x/)
 
 ## Templating system
 
-Templating is done by [Timber plugin](https://github.com/timber/timber) which uses [Twig](https://twig.sensiolabs.org/doc/2.x/) as a templating system.
+Templating is done by [Timber plugin](https://github.com/timber/timber) which uses [Twig](https://twig.sensiolabs.org/doc/2.x/).
 
 #### Custom filters
 
@@ -29,6 +34,8 @@ Templating is done by [Timber plugin](https://github.com/timber/timber) which us
 
 ## Plugins
 
+Those 👇 are Must-Use plugins installed into `mu-plugins` folder. If you install this theme from project's root using `composer require`, those plugins may be installed into `plugins` folder instead.
+
 | Plugin | Description |
 |-|-|
 | `timber-library` | The core plugin to create custom theme. |
@@ -36,3 +43,15 @@ Templating is done by [Timber plugin](https://github.com/timber/timber) which us
 | `wp-tracy` | Debugging, adds debug panel. |
 | `disable-comments` | To disable comments. |
 | `tinymce-advanced` | Advanced WYSIWYG. |
+
+## Directory structure
+
+```
+├─ assets				← Static files - images, CSS, LESS, gulp, JS, ...
+├─ defaults				← Timber's starter theme twig files for fallback.
+├─ pages				← Custom Wordpress template pages (.php)
+├─ templates			← Custom twig templates.
+│   └─ partials			← Components & other partials such as HTML header, footer, GA, ...
+├─ admin.CSS			← Custom CSS sheet for administration.
+└─ functions.php		← Theme boostrap
+```
