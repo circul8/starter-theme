@@ -47,9 +47,9 @@ Those 👇 are Must-Use plugins installed into `mu-plugins` folder. If you insta
 ## Directory structure
 
 ```
-├─ assets				← Static files - images, CSS, LESS, gulp, JS, ...
-├─ defaults				← Timber's starter theme twig files for fallback.
-├─ pages				← Custom Wordpress template pages (.php)
+├─ assets			← Static files - images, CSS, LESS, gulp, JS, ...
+├─ defaults			← Timber's starter theme twig files for fallback.
+├─ pages			← Custom Wordpress template pages (.php)
 ├─ templates			← Custom twig templates.
 │   └─ partials			← Components & other partials such as HTML header, footer, GA, ...
 ├─ admin.CSS			← Custom CSS sheet for administration.
