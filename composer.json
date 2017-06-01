@@ -2,6 +2,7 @@
   "name": "circul8/wordpress-starter-theme",
   "description": "Starter theme to build a Timber theme",
   "type": "wordpress-theme",
+  "license": "MIT",
   "authors": [
    {
       "name": "Jan Blasko",
