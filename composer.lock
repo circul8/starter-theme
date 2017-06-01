@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "31cb57dea8270ca60503ec071395be41",
+    "content-hash": "a1387e7d83320a77f40b96bdb4b0909e",
     "packages": [
         {
             "name": "composer/installers",
@@ -131,7 +131,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/custom-field-suite.zip?timestamp=1493255890",
-                "reference": "trunk",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -151,7 +151,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/disable-comments.2.6.zip",
-                "reference": "tags/2.6",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -191,7 +191,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/tinymce-advanced.4.5.6.zip",
-                "reference": "tags/4.5.6",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -211,7 +211,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wp-tracy.zip?timestamp=1470918924",
-                "reference": "trunk",
+                "reference": null,
                 "shasum": null
             },
             "require": {
