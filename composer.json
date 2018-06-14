@@ -28,7 +28,6 @@
       "../../mu-plugins/{$name}/": [
         "wpackagist-plugin/timber-library",
         "wpackagist-plugin/wp-tracy",
-        "wpackagist-plugin/custom-field-suite",
         "wpackagist-plugin/disable-comments",
         "wpackagist-plugin/tinymce-advanced"
       ],
@@ -41,7 +40,6 @@
   "require": {
     "wpackagist-plugin/wp-tracy": "^1.0",
     "wpackagist-plugin/timber-library": "^1.2",
-    "wpackagist-plugin/custom-field-suite": "^2.5",
     "wpackagist-plugin/disable-comments": "^1.7",
     "wpackagist-plugin/tinymce-advanced": "^4.5"
   }
