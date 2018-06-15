@@ -1,15 +1,18 @@
 <?php
-if ( ! class_exists( 'Timber' ) ) {
+if (! class_exists('Timber')) {
 	exit('Timber not activated.');
 }
 
 Timber::$dirname = ['templates', 'defaults'];
 
-class Site extends Timber\Site {
+class Site extends Timber\Site
+{
 
 	const POSTS_NAME = 'News';
 
-	function __construct() {
+
+	public function __construct()
+	{
 		add_theme_support('post-formats');
 		add_theme_support('post-thumbnails');
 		add_theme_support('menus');
@@ -19,46 +22,52 @@ class Site extends Timber\Site {
 		add_action('init', [$this, 'renamePostsType']);
 		add_action('admin_menu', [$this, 'renamePostsMenu']);
 		add_action('admin_head', [$this, 'adminCSS']);
-        $this->cleanup();
+		$this->cleanup();
 		parent::__construct();
 	}
 
-	public function adminCss() {
+
+	public function adminCss()
+	{
 		echo '<link rel="stylesheet" href="'.get_stylesheet_directory_uri().'/admin.css" type="text/css" media="all" />';
 	}
 
-	public function cleanup() {
+
+	public function cleanup()
+	{
 		// Adminbar
 		add_filter('show_admin_bar', '__return_false');
 
 		// Emojis
 		remove_action('wp_head', 'print_emoji_detection_script', 7);
 		remove_action('wp_print_styles', 'print_emoji_styles');
-		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-		remove_action( 'admin_print_styles', 'print_emoji_styles' );
+		remove_action('admin_print_scripts', 'print_emoji_detection_script');
+		remove_action('admin_print_styles', 'print_emoji_styles');
 
 		// Feeds
-		remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
-		remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
-		remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
+		remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
+		remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
+		remove_action('wp_head', 'rsd_link'); // Display the link to the Really Simple Discovery service endpoint, EditURI link
 
 		// Remove JSON API
 		remove_action('wp_head', 'rest_output_link_wp_head');
 		remove_action('wp_head', 'wp_oembed_add_discovery_links');
 
 		// Others
-		remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
-		remove_action( 'wp_head', 'index_rel_link' ); // index link
-		//remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
-		//remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // start link
-		//remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
-		remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version
+		remove_action('wp_head', 'wlwmanifest_link'); // Display the link to the Windows Live Writer manifest file.
+		remove_action('wp_head', 'index_rel_link'); // index link
+		//remove_action('wp_head', 'parent_post_rel_link', 10, 0); // prev link
+		//remove_action('wp_head', 'start_post_rel_link', 10, 0); // start link
+		//remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0); // Display relational links for the posts adjacent to the current post.
+		remove_action('wp_head', 'wp_generator'); // Display the XHTML generator that is generated on the wp_head hook, WP version
 	}
+
 
 	/**
 	 * Rename "Posts" to something else.
 	 */
-	public function renamePostsMenu() {
+	public function renamePostsMenu()
+	{
 		global $menu;
 		global $submenu;
 		!$menu[5][0] ?: $menu[5][0] = self::POSTS_NAME;
@@ -67,10 +76,12 @@ class Site extends Timber\Site {
 		$submenu['edit.php'][16][0] ?: $submenu['edit.php'][16][0] = sprintf('%s Tags', self::POSTS_NAME);
 	}
 
+
 	/**
 	 * Rename Posts type to something else
 	 */
-	public function renamePostsType() {
+	public function renamePostsType()
+	{
 		global $wp_post_types;
 		$labels = &$wp_post_types['post']->labels;
 		$labels->name = self::POSTS_NAME;
@@ -85,18 +96,22 @@ class Site extends Timber\Site {
 		$labels->not_found_in_trash = 'No Article found in Trash';
 	}
 
-	function addToContext( $context ) {
+
+	public function addToContext($context)
+	{
 		$context['navigation'] = [
 			'main' => new Timber\Menu(),
 		];
-		$context['isIE'] = (preg_match('~MSIE|Internet Explorer~i', $_SERVER['HTTP_USER_AGENT']) || (strpos($_SERVER['HTTP_USER_AGENT'], 'Trident/7.0; rv:11.0') !== FALSE));
+		$context['isIE'] = (preg_match('~MSIE|Internet Explorer~i', $_SERVER['HTTP_USER_AGENT']) || (strpos($_SERVER['HTTP_USER_AGENT'], 'Trident/7.0; rv:11.0') !== false));
 		$context['site'] = $this;
 		return $context;
 	}
 
-	function addToTwig( $twig ) {
+
+	public function addToTwig($twig)
+	{
 		/* this is where you can add your own functions to twig */
-		$twig->addExtension( new Twig_Extension_StringLoader() );
+		$twig->addExtension(new Twig_Extension_StringLoader());
 		$twig->addFilter('cfs', new Twig_SimpleFilter('cfs', [$this, 'cfs']));
 		$twig->addFilter('post', new Twig_SimpleFilter('post', [$this, 'post']));
 		$twig->addFilter('dump', new Twig_SimpleFilter('dump', [$this, 'dump']));
@@ -106,9 +121,11 @@ class Site extends Timber\Site {
 		return $twig;
 	}
 
-	public function setMenuActive($classes, Timber\MenuItem $menu) {
+
+	public function setMenuActive($classes, Timber\MenuItem $menu)
+	{
 		$template = get_page_template_slug($menu->_menu_item_object_id);
-		switch (TRUE) {
+		switch (true) {
 			case is_singular('post') && $template == 'pages/blog.php':
 				$classes[] = 'current_page_item';
 				break;
@@ -116,37 +133,48 @@ class Site extends Timber\Site {
 		return $classes;
 	}
 
-	function cfs($field_name, $post_id = NULL, $options = []) {
+
+	public function cfs($field_name, $post_id = null, $options = [])
+	{
 		return CFS()->get($field_name, $post_id, $options);
 	}
 
-	function post($post_id) {
+
+	public function post($post_id)
+	{
 		return new Timber\Post($post_id);
 	}
 
-	public static function dump($value) {
+
+	public static function dump($value)
+	{
 		Tracy\Debugger::barDump($value);
 	}
 
-	public function image($id) {
+
+	public function image($id)
+	{
 		return new Timber\Image($id);
 	}
 
-	public function target($link) {
+
+	public function target($link)
+	{
 		if (!is_array($link)) {
 			return '_self';
 		}
 		return $link['target'] == 'none' ? '_self' : $link['target'];
 	}
 
-	public function webalize($string) {
+
+	public function webalize($string)
+	{
 		$string = strtolower($string);
 		$string = preg_replace('/[,\.\:\"\'\!\?]+/i', '', $string);
 		$string = preg_replace('/[^a-z0-9]+/i', '-', $string);
 		$string = trim($string, '-');
 		return $string;
 	}
-
 }
 
 new Site();
